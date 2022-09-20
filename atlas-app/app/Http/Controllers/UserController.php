@@ -30,7 +30,6 @@ class UserController extends Controller
         $formFields['password'] = bcrypt($formFields['password']);
 
         $user = User::create($formFields);
-        var_dump($formFields);
 
         //Login
         // auth()->login($user);
@@ -40,5 +39,20 @@ class UserController extends Controller
 
     public function login(){
         return view('/login');
+    }
+
+    public function authenticate(Request $request){
+        $formFields = $request->validate([
+            'username' =>['required'],
+            'password' => ['required']
+        ]);
+
+        if(auth()->attempt($formFields)){
+            $request->session()->regenerate();
+
+            return redirect('/')->with('message', 'Login Successful!');
+        }
+
+        return back()->withErrors(['username' => 'Invalid Credentials'])->onlyInput('username');
     }
 }

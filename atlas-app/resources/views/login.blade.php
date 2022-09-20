@@ -13,12 +13,12 @@
     </head>
     <body>
     <div class="container">
+        <div id="header"></div>
             <h2 class="text-center display-4">Log in</h2>
-            <form method="POST" action="/users/login">
+            <form method="POST" action="/users/authenticate">
                 {{ csrf_field() }}
                 <div class="form-row form-center">
                     <div class="form-group col-md-6">
-                        
                         <label for="username">Username: </label>
                         <input type="text" class="form-control" name="username" placeholder="Username" />
                         @error('username')
@@ -31,7 +31,6 @@
                             <p class="text-danger fs-6 mt-1">{{$message}}</p>
                         @enderror
                         <br />
-                        
                         <div class="text-center">
                             <button type="submit" class="btn btn-outline-success btn-lg">Log in</button>
                         </div>
