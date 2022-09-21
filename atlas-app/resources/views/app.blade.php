@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Atlas</title>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -12,9 +13,15 @@
         @vite(['resources/css/app.css'])
     </head>
     <body>
-        <div id="header"></div>
-        <div id="navbar"></div>
-        <div id="gallery"></div>
+        <div id="app">
+            <Appheader></Appheader>
+            @auth
+            <Navbar2 :user="{{ Auth::user() }}"></Navbar2>
+            @else
+            <Mainnavbar></Mainnavbar>
+            @endauth
+            <Gallery></Gallery>
+        </div>
         @vite('resources/js/app.js')
     </body>
 </html>

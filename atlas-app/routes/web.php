@@ -16,11 +16,6 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/token', function (Request $request){
-//     $token = $request->session()->token();
-
-//     $token = csrf_token();
-// });
 
 Route::get('/', function () {
     return view('app');
@@ -30,19 +25,19 @@ Route::get('/', function () {
 //     ->only(['index', 'store'])
 //     ->middleware(['auth', 'verified']);
 
-Route::get('/login', function () {
-    return view('login');
-});
-
-// Route::get('/register', function () {
-//     return view('register');
-// });
-
+// Show the register an user account page
 Route::get('/register', [UserController::class, 'create']);
 
+// Store a user into the database
 Route::post('/users', [UserController::class, 'store']);
 
+// Show the login page
 Route::get('/login', [UserController::class, 'login']);
 
+// Log in to an account page
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
+// Log user out
+Route::post('/logout', [UserController::class, 'logout']);
+
 // require __DIR__.'/auth.php';

@@ -12,56 +12,70 @@
         @vite(['resources/css/app.css'])
     </head>
     <body>
-        <!-- <div id="header"></div> -->
+        <div id="header"></div>
         <div class="container">
-            <h2 class="text-center display-4">Sign Up</h2>
+            <h2 class="text-center display-4 m-2">Sign Up</h2>
             <form method="POST" action="/users">
                 {{ csrf_field() }}
                 <div class="form-row form-center">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-3">
                         <label for="first_name">First Name: </label>
                         <input type="text" class="form-control" name="first_name" placeholder="First Name" value="{{old('first_name')}}" />
                         
                         @error('firstName')
                             <p class="text-danger fs-6 mt-1">{{$message}}</p>
                         @enderror
-                        
-                        <br />
+                    </div>
+                    <div class="form-group col-md-3">
                         <label for="last_name">Last Name: </label>
                         <input type="text" class="form-control" name="last_name" placeholder="Last Name" />
                         @error('lastName')
                             <p class="text-danger fs-6 mt-1">{{$message}}</p>
                         @enderror
-                        <br />
+                    </div>
+                </div>
+                <div class="form-row form-center">
+                    <div class="form-group col-md-3">
                         <label>Birthdate: </label>
                         <input type="date" name="birthdate" class="form-control" />
-                        <br />
+                    </div>
+                    <div class="form-group col-md-3">
                         <label for="email">E-mail: </label>
                         <input type="text" class="form-control" name="email" placeholder="E-mail" />
                         @error('email')
                             <p class="text-danger fs-6 mt-1">{{$message}}</p>
                         @enderror
-                        <br />
+                    </div>
+                </div>
+                <div class="form-row form-center">
+                    <div class="form-group col-md-6">
                         <label for="username">Username: </label>
                         <input type="text" class="form-control" name="username" placeholder="Username" />
                         @error('username')
                             <p class="text-danger fs-6 mt-1">{{$message}}</p>
                         @enderror
-                        <br />
+                    </div>
+                </div>
+                <div class="form-row form-center">
+                    <div class="form-group col-md-6">
                         <label for="password">Password: </label>
                         <input type="password" class="form-control" name="password" placeholder="Password" />
                         @error('password')
                             <p class="text-danger fs-6 mt-1">{{$message}}</p>
                         @enderror
-                        <br />
+                    </div>
+                </div>
+                <div class="form-row form-center">
+                    <div class="form-group col-md-6">
                         <label for="password_confirmation">Confirm Password: </label>
                         <input type="password" class="form-control" name="password_confirmation" placeholder="Password" />
                         @error('password_confirmation')
                             <p class="text-danger fs-6 mt-1">{{$message}}</p>
                         @enderror
                         <br />
-                        <div class="text-center">
+                        <div>
                             <button type="submit" class="btn btn-outline-success btn-lg">Sign Up</button>
+                            <p class="m-0 bottom-zero">Already have an account? <a href="/login">Log in here!</a></p>
                         </div>
                     </div>
                 </div>

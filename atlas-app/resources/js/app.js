@@ -1,15 +1,18 @@
 import './bootstrap';
-// require('./bootstrap');
+import { createApp, VueElement } from 'vue/dist/vue.esm-bundler';
 
-import {createApp, VueElement} from 'vue';
-
+import AppHeader from '../components/AppHeader.vue';
+import MainNavBar from '../components/MainNavBar.vue';
+import NavBar2 from '../components/NavBar2.vue';
 import Gallery from '../components/Gallery.vue';
-import Login from '../components/Login.vue';
-import NavBar from '../components/NavBar.vue';
-import Header from '../components/Header.vue';
 
-createApp(Header).mount("#header")
-createApp(NavBar).mount("#navbar")
-createApp(Gallery).mount("#gallery")
+const app = createApp({
+    components: {
+        'Appheader' : AppHeader,
+        'Mainnavbar' : MainNavBar,
+        'Navbar2' : NavBar2,
+        'Gallery': Gallery
+    }
+});
 
-createApp(Login).mount("#login")
+app.mount("#app");

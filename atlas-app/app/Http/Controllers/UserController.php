@@ -55,4 +55,11 @@ class UserController extends Controller
 
         return back()->withErrors(['username' => 'Invalid Credentials'])->onlyInput('username');
     }
+
+    public function logout(Request $request){
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
 }

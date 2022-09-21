@@ -1,19 +1,31 @@
 <template>
-    <nav class="navbar navbar-expand-sm mb-5 p-0 topnav">
-        <div class="m-search">
-            <input type="text" placeholder="Search..." />
+    <nav class="navbar navbar-expand-sm mt-4 mb-5 p-0 topnav">
+        <div class="ml-4">
+            <input class="mr-1" type="text" placeholder="Search..." />
             <button type="submit">Search</button>
         </div>
-        <div class="m-items">
+        <div>
             <a href="#" class="navbar-brand m-0">Home</a>
             <a href="#" class="navbar-brand m-0">Contact Us</a>
             <a href="#" class="navbar-brand m-0">About</a>
-            <a href="#" class="navbar-brand m-0">Login</a>
+        </div>
+        <div class="login">
+            <a href="/login" class="navbar-brand m-0">Login</a>
         </div>
     </nav>
 </template>
 
+<!-- <script>
+    export default {
+        name: MainNavBar
+    }
+</script> -->
+    
+
 <style scoped>
+    .login{
+        margin-right: 5%;
+    }
 
     a {
         color: white;

@@ -6,3 +6,9 @@
 .fs-6 {
     font-size: smaller;
 }
+
+.bottom-zero{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

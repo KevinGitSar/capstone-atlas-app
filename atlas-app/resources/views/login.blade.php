@@ -12,9 +12,9 @@
         @vite(['resources/css/app.css'])
     </head>
     <body>
+    <div id="header"></div>
     <div class="container">
-        <div id="header"></div>
-            <h2 class="text-center display-4">Log in</h2>
+            <h2 class="text-center display-4 m-2">Log in</h2>
             <form method="POST" action="/users/authenticate">
                 {{ csrf_field() }}
                 <div class="form-row form-center">
@@ -31,8 +31,9 @@
                             <p class="text-danger fs-6 mt-1">{{$message}}</p>
                         @enderror
                         <br />
-                        <div class="text-center">
+                        <div>
                             <button type="submit" class="btn btn-outline-success btn-lg">Log in</button>
+                            <p class="m-0 bottom-zero">Don't have an account? <a href="/register">Sign up here!</a></p>
                         </div>
                     </div>
                 </div>
