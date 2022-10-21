@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Carbon\Carbon;
+use Symfony\Component\String\ByteString;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -14,7 +20,16 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        // $username = Auth::username();
+        $post = Post::all()->where('username', auth()->user()->username);
+        return view('userpage', compact('post'));
+    }
+
+    public function getAll()
+    {
+        // $username = Auth::username();
+        $post = Post::all();
+        return view('app', compact('post'));
     }
 
     /**
@@ -35,7 +50,33 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formFields = $request->validate([
+            'username' => ['required'],
+            'image' => ['required'],
+            'location' => ['required'],
+            'description' => ['required'],
+            'tags' =>['required']
+        ]);
+
+        $post = new Post();
+        
+        if($request->hasFile('image')){
+            $formFields['image'] = $request->file('image')->store('posts', 'public');
+        }
+        // $imagePost = $request->file('image');
+        // $extension = $imagePost->getClientOriginalExtension();
+        // Storage::disk('images')->put($imagePost->getFilename().'.'. $extension, File::get($imagePost));
+
+        $post->username = $formFields['username'];
+        $post->image = $formFields['image'];
+        $post->location = $formFields['location'];
+        $post->description = $formFields['description'];
+        $post->tags = $formFields['tags'];
+        $post->dateCreated = Carbon::now();
+
+        $post->save();
+        
+        return redirect('/userpage');
     }
 
     /**

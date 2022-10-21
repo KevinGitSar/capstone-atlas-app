@@ -4,17 +4,25 @@
             <input class="mr-1" type="text" placeholder="Search..." />
             <button type="submit">Search</button>
         </div>
-        <div>
-            <a href="#" class="navbar-brand m-0">Home</a>
-            <a href="#" class="navbar-brand m-0">Contact Us</a>
-            <a href="#" class="navbar-brand m-0">About</a>
-        </div>
-        <div class="login">
-            <a href="#" class="navbar-brand m-0">Welcome {{user.username}}</a>
-            <form method="POST" action="/logout" class="navbar-brand m-0">
-                <input type="hidden" name="_token" v-bind:value="csrf">
-                <button type="submit">Log Out</button>
-            </form>
+        <div class="dropdown login">
+            <a href="#" class="navbar-brand m-0" role="button" data-toggle="dropdown" aria-expanded="false">Welcome {{user.username}}</a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="/userpage" class="dropdown-item navbar-brand m-0">Posts</a>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-item navbar-brand m-0">Inbox</a>
+                </li>
+                <li>
+                    <a href="/settings" class="dropdown-item navbar-brand m-0">Settings</a>
+                </li>
+                <li>
+                    <form method="POST" action="/logout" class="dropdown-item navbar-brand m-0">
+                        <input type="hidden" name="_token" v-bind:value="csrf">
+                        <button type="submit">Log Out</button>
+                    </form>
+                </li>
+            </ul>
         </div>
     </nav>
 </template>
@@ -32,6 +40,11 @@ export default {
 </script>
 
 <style scoped>
+    .dropdown-menu{
+        width: 100%;
+        text-align: center;
+        background: #354F52;
+    }
     .login{
         margin-right: 2%;
     }
@@ -45,7 +58,6 @@ export default {
     }
 
     nav {
-        overflow: hidden;
         background-color: #354F52;
         display: flex;
         justify-content: space-between;

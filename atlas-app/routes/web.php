@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -17,9 +18,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('app');
-});
+Route::get('/', [PostController::class, 'getAll']);
 
 // Route::resource('posts', PostController::class)
 //     ->only(['index', 'store'])
@@ -39,5 +38,26 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 // Log user out
 Route::post('/logout', [UserController::class, 'logout']);
+
+// Show logged in user and their user page
+Route::get('/userpage', [PostController::class, 'index']);
+
+// Show logged in user their posting page
+Route::get('/postpage', [UserController::class, 'postpage']);
+
+// Store post in database
+Route::post('/userpage/post', [PostController::class, 'store']);
+
+// Show Settings page
+Route::get('/settings', [UserController::class, 'settings']);
+
+// Show Settings page
+Route::get('/password', [UserController::class, 'password']);
+
+// Update Settings
+Route::put('/settings/updating/{userid}', [UserController::class, 'update']);
+
+// Update Password
+Route::put('/settings/password/{userid}', [UserController::class, 'updatePassword']);
 
 // require __DIR__.'/auth.php';

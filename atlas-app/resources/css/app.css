@@ -12,3 +12,56 @@
     bottom: 0;
     right: 0;
 }
+
+.atlas-btn{
+    border: none;
+    border-radius: 5px;
+}
+
+.atlas-btn:hover, .atlas-menu-item:hover{
+    border: none;
+    border-radius: 5px;
+    background-color: #52796F;
+    color:white;
+}
+
+.atlas-btn:active{
+    border:none;
+    border-radius: 5px;
+}
+
+.atlas-btn, .atlas-menu-item{
+    background-color: #354F52;
+    color: white;
+}
+
+.atlas-menu-container{
+    background-color: #354F52;
+}
+
+.atlas-button-group{
+    display: flex;
+}
+
+.atlas-content-container{
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: #DDE1DA;
+    min-height: 500px;
+}
+
+.gallery{
+    background-color: #DDE1DA;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5%;
+}
+
+.gallery-item{
+    margin: 2%;
+}
+
+.gallery-image{
+    width: 200px;
+    height: 275px;
+}

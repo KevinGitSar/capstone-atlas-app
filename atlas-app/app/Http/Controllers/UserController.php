@@ -25,7 +25,7 @@ class UserController extends Controller
             'password' => ['required', 'confirmed', 'min:8']
         ]);
 
-        $formFields['birthdate'] = Carbon::createFromFormat('Y-m-d', $formFields['birthdate']);
+        $formFields['birthdate'] = Carbon::parse($formFields['birthdate'])->format('Y-m-d');
 
         $formFields['password'] = bcrypt($formFields['password']);
 
@@ -34,7 +34,37 @@ class UserController extends Controller
         //Login
         // auth()->login($user);
 
-        return redirect('/');
+        return redirect('/login');
+    }
+
+    // Update User
+    public function update(Request $request, $userid){
+        $formFields = $request->validate([
+            'first_name' => ['required', 'min:2'],
+            'last_name' => ['required', 'min:2'],
+            'birthdate' => ['required'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($userid)],
+            'username' =>['required', Rule::unique('users', 'username')->ignore($userid)],
+        ]);
+
+        $formFields['birthdate'] = Carbon::parse($formFields['birthdate'])->format('Y-m-d');
+
+        User::where('id', $userid)->update($formFields);
+
+        return redirect('/settings')->with('message', 'New Changes Saved Successfully!');
+    }
+
+    //update password
+    public function updatePassword(Request $request, $userid){
+        $formFields = $request->validate([
+            'password' => ['required', 'confirmed', 'min:8']
+        ]);
+
+        $formFields['password'] = bcrypt($formFields['password']);
+        
+        User::where('id', $userid)->update($formFields);
+
+        return redirect('/settings')->with('message', 'New Password Saved Successfully!');
     }
 
     public function login(){
@@ -61,5 +91,22 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function postpage(){
+        if(auth()->check()){
+            return view('/postpage');
+        } else{
+            //Later add "Oops you're not logged in page"
+            return view('/login');
+        }
+    }
+
+    public function settings(){
+        return view('/settings');
+    }
+    
+    public function password(){
+        return view('/password');
     }
 }

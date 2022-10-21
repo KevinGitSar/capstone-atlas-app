@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->string('username');
+            $table->foreign('username')->references('username')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('image');
+            $table->string('location');
+            $table->longText('description');
+            $table->string('tags');
+            $table->date('dateCreated');
             $table->timestamps();
         });
     }
