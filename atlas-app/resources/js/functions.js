@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    //Add Comment Section
+    // Lets an authenticated user add a comment
     $("#add-comment").on("submit", function(e){
         let formData = $("#add-comment").serializeArray();
         let username = formData[0]['value'];
@@ -20,6 +20,7 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
+    // After a user adds a comment redisplay all comments
     function showComments(post, username){
         $.ajax({
             headers: {
@@ -46,6 +47,8 @@ $(document).ready(function() {
     }
 
     //Admin Section
+
+    // Display reported users
     $("#report-btn").click(function(){
         $("#report-list").toggleClass('d-none').toggleClass('d-flex');
         $("#put-header").empty();
@@ -55,6 +58,7 @@ $(document).ready(function() {
         getListOfReportedUsers();
     });
 
+    // Display banned users
     $("#ban-btn").click(function(){
         $("#report-list").toggleClass('d-none').toggleClass('d-flex');
         $("#put-header").empty();
@@ -64,6 +68,7 @@ $(document).ready(function() {
         getListOfBannedUsers();
     });
 
+    // Function to get one banned user and it's data
     function getABannedUser(bannedUser){
         $.ajax({
             headers: {
@@ -95,6 +100,7 @@ $(document).ready(function() {
         });
     }
 
+    // Function to get a reported user and it's data
     function getAReportedUser(reportedName){
         $.ajax({
             headers: {
@@ -134,6 +140,7 @@ $(document).ready(function() {
         });
     }
 
+    // Function to dimiss and delete all reports related to a user
     function dismissUser(name){
         $("#put-header2").empty();
         $("#show-reported").empty();
@@ -150,6 +157,7 @@ $(document).ready(function() {
         });
     }
 
+    // Function to suspend a user
     function suspendUser(name){
         $.ajax({
             headers: {
@@ -164,6 +172,7 @@ $(document).ready(function() {
         });
     }
 
+    // Function to unsuspend a user
     function unsuspendUser(name){
         $.ajax({
             headers: {
@@ -178,6 +187,7 @@ $(document).ready(function() {
         });
     }
 
+    // Function to get a list of all banned users
     function getListOfBannedUsers(){
         $.ajax({
             headers: {
@@ -203,6 +213,7 @@ $(document).ready(function() {
         });
     }
 
+    // Function to get a list of all reported users
     function getListOfReportedUsers(){
         $.ajax({
             headers: {

@@ -10,7 +10,11 @@ use Carbon\Carbon;
 
 class ReportController extends Controller
 {
-    // Display Report Page
+    /**
+     * Display the report page.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index($reported)
     {
         $username = auth()->user()->username;
@@ -19,6 +23,11 @@ class ReportController extends Controller
         return view('/reportpage', compact('reportedUser'))->with('username', $username);
     }
 
+    /**
+     * Create and store a report.
+     *
+     * @return \Illuminate\Http\Request
+     */
     public function store(Request $request)
     {
         $formFields = $request->validate([
@@ -41,9 +50,12 @@ class ReportController extends Controller
         $message = 'Report Submitted Sucessfully!';
 
         return redirect('/home')->with('message', $message);
-
     }
 
+    /**
+     * Display a reported user.
+     *
+     */
     public function show($name)
     {
         $reportedUser = Report::where('reportedUser', $name)->get();
@@ -51,23 +63,42 @@ class ReportController extends Controller
         return $reportedUser;
     }
 
+    /**
+     * Display all reported users.
+     *
+     * @return \App\Models\Report
+     */
     public function getAllReported()
     {
         $reports = Report::distinct()->get(['reportedUser']);
         return $reports;
     }
 
+    /**
+     * Display all banned users.
+     *
+     * @return \App\Models\User
+     */
     public function getAllBanned()
     {
         $banned = User::onlyTrashed()->get();
         return $banned;
     }
 
+    /**
+     * Deletes all reports of a user.
+     *
+     */
     public function dismiss($name)
     {
-        Report::where('reportedUser', $name)->delete();
+        Report::where('reportedUser', $name)->forceDelete();
     }
 
+    /**
+     * Display the admin view.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function showView()
     {
         return view('app');

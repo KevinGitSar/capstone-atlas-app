@@ -3,7 +3,6 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
-//use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 
@@ -55,7 +54,7 @@ Route::post('/post/delete/{id}', [PostController::class, 'delete']);
 // Show Settings page
 Route::get('/settings', [UserController::class, 'settings']);
 
-// Show Settings page
+// Show password page
 Route::get('/password', [UserController::class, 'password']);
 
 // Update Settings

@@ -11,21 +11,39 @@ use Carbon\Carbon;
 
 class UserController extends Controller
 {
-
+    /**
+     * Display the home page.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(){
         return redirect('/home');
     }
-    // Show Register/Create Form
+
+    /**
+     * Display the register form.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create(){
         return view('/register');
     }
 
+    /**
+     * Display searched users.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function userSearch(){
         $users = User::latest()->filter(request(['profile']))->get();
         return view('userslist', compact('users'));
     }
 
-    // Creates new User
+    /**
+     * Creates and stores a user.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request){
         $formFields = $request->validate([
             'first_name' => ['required', 'min:2'],
@@ -48,7 +66,11 @@ class UserController extends Controller
         return redirect('/login');
     }
 
-    // Update User
+    /**
+     * Updates a user.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $userid){
         $formFields = $request->validate([
             'first_name' => ['required', 'min:2'],
@@ -65,7 +87,11 @@ class UserController extends Controller
         return redirect('/settings')->with('message', 'New Changes Saved Successfully!');
     }
 
-    //update password
+    /**
+     * Updates a users password.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function updatePassword(Request $request, $userid){
         $formFields = $request->validate([
             'password' => ['required', 'confirmed', 'min:8']
@@ -78,10 +104,20 @@ class UserController extends Controller
         return redirect('/settings')->with('message', 'New Password Saved Successfully!');
     }
 
+    /**
+     * Display the login page.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function login(){
         return view('/login');
     }
 
+    /**
+     * Authenticate the user.
+     *
+     * @return \Illuminate\Http\Request
+     */
     public function authenticate(Request $request){
         $formFields = $request->validate([
             'username' =>['required'],
@@ -105,6 +141,11 @@ class UserController extends Controller
         return back()->withErrors(['username' => 'Invalid Credentials'])->onlyInput('username');
     }
 
+    /**
+     * Logs out the user.
+     *
+     * @return \Illuminate\Http\Request
+     */
     public function logout(Request $request){
         $request->session()->invalidate();
         $request->session()->regenerateToken();
@@ -112,6 +153,11 @@ class UserController extends Controller
         return redirect('/');
     }
 
+    /**
+     * Display the post page to the user.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function postpage($username){
         if(auth()->check()){
             return view('/postpage')->with('username', $username);
@@ -121,20 +167,39 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Display the settings page to the user.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function settings(){
         return view('/settings');
     }
     
+    /**
+     * Display the password change page.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function password(){
         return view('/password');
     }
 
+    /**
+     * Suspend/Ban a user.
+     * Softdeleting a user.
+     * 
+     */
     public function suspend($name){
         User::where('username', $name)->delete();
         Comment::where('userUsername', $name)->delete();
         Post::where('username', $name)->delete();
     }
 
+    /**
+     * Restore a user who is suspended/banned.
+     *
+     */
     public function unsuspend($name){
         User::onlyTrashed()->where('username', $name)->restore();
         Comment::onlyTrashed()->where('userUsername', $name)->restore();

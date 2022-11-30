@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\File;
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display user page if it exists.
      *
      * @return \Illuminate\Http\Response
      */
@@ -28,6 +28,11 @@ class PostController extends Controller
         }
     }
 
+    /**
+     * Display all searched posts by tag.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getAll()
     {   
         $post = Post::latest()->filter(request(['tag']))->get();
@@ -68,6 +73,11 @@ class PostController extends Controller
         return redirect('/profile/' . auth()->user()->username);
     }
 
+    /**
+     * Delete a post by id.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function delete($id)
     {
         $post = Post::find($id);
@@ -81,7 +91,7 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display a singular post.
      *
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response

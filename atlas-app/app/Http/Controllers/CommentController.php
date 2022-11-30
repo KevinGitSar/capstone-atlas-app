@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    // Creates and stores comments in the database
     public function store(Request $request)
     {
         $formFields = $request->validate([
@@ -25,6 +31,11 @@ class CommentController extends Controller
         return $comment;
     }
 
+    /**
+     * Displays a comment.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function show($post)
     {
         $newPost = "posts/" . $post;
@@ -33,11 +44,17 @@ class CommentController extends Controller
         return $data;
     }
 
+    /**
+     * Deletes a comment.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function delete($id)
     {
         $comment = comment::find($id);
         
-        $comment->delete();
+        // Force delete or it will just softDelete
+        $comment->forceDelete();
 
         return redirect()->back();
     }
