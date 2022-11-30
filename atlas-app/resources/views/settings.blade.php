@@ -17,11 +17,11 @@
             <Appheader></Appheader>
             @auth
             <Usernavbar1 :user="{{ Auth::user() }}"></Usernavbar1>
-            @if(session()->has('message'))
-            <div class="w-50 ml-auto mr-auto text-center alert alert-success alert-dismissible fade show" role="alert">
-                <p class="m-0 p-0"><strong>{{session('message')}}<button type="button" class="float-left close m-0 p-0" data-dismiss="alert" aria-label="Close">&times;</button></strong></p>
-            </div>
-            @endif
+                @if(session()->has('message'))
+                <div class="w-50 ml-auto mr-auto text-center alert alert-success alert-dismissible fade show" role="alert">
+                    <p class="m-0 p-0"><strong>{{session('message')}}<button type="button" class="float-left close m-0 p-0" data-dismiss="alert" aria-label="Close">&times;</button></strong></p>
+                </div>
+                @endif
             <div class="container w-75">
                 <h1 class="text-center">Profile Settings</h1>
                 <h2 class="text-center">Account Details</h2>

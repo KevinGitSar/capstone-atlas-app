@@ -1,21 +1,11 @@
 <template>
     <nav class="navbar navbar-expand-sm mt-4 mb-5 p-0 topnav">
         <div class="ml-4">
-            <input class="mr-1" type="text" placeholder="Search..." />
-            <button type="submit">Search</button>
+            <h2 class="admin-view">Adminstrative View</h2>
         </div>
         <div class="dropdown login">
-            <a href="#" class="navbar-brand m-0" role="button" data-toggle="dropdown" aria-expanded="false">Welcome {{user.username}}</a>
+            <a href="#" class="navbar-brand m-0" role="button" data-toggle="dropdown" aria-expanded="false">{{user.username}}</a>
             <ul class="dropdown-menu">
-                <li>
-                    <a href="/userpage" class="dropdown-item navbar-brand m-0">Posts</a>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-item navbar-brand m-0">Inbox</a>
-                </li>
-                <li>
-                    <a href="/settings" class="dropdown-item navbar-brand m-0">Settings</a>
-                </li>
                 <li>
                     <form method="POST" action="/logout" class="dropdown-item navbar-brand m-0">
                         <input type="hidden" name="_token" v-bind:value="csrf">
@@ -67,28 +57,6 @@ export default {
         background-color: #52796F;
         color: white;
     }
-
-    /* Change the color of links on hover */
-    /* nav a:hover {
-    background-color: #ddd;
-    color: black;
-    } */
-
-    /* Style the "active" element to highlight the current page */
-    /* nav a.active {
-    background-color: #2196F3;
-    color: white;
-    } */
-
-    /* Style the search box inside the navigation bar */
-    /* nav input[type=text] {
-    float: left;
-    padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 17px;
-    } */
 
     /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
     @media screen and (max-width: 600px) {

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\User;
@@ -9,9 +11,18 @@ use Carbon\Carbon;
 
 class UserController extends Controller
 {
+
+    public function index(){
+        return redirect('/home');
+    }
     // Show Register/Create Form
     public function create(){
         return view('/register');
+    }
+
+    public function userSearch(){
+        $users = User::latest()->filter(request(['profile']))->get();
+        return view('userslist', compact('users'));
     }
 
     // Creates new User
@@ -25,14 +36,14 @@ class UserController extends Controller
             'password' => ['required', 'confirmed', 'min:8']
         ]);
 
+        $formFields['role'] = 'user';
+        
+        $formFields['suspended'] = false;
         $formFields['birthdate'] = Carbon::parse($formFields['birthdate'])->format('Y-m-d');
 
         $formFields['password'] = bcrypt($formFields['password']);
 
         $user = User::create($formFields);
-
-        //Login
-        // auth()->login($user);
 
         return redirect('/login');
     }
@@ -78,9 +89,17 @@ class UserController extends Controller
         ]);
 
         if(auth()->attempt($formFields)){
-            $request->session()->regenerate();
+            if(auth()->user()->role == "admin"){
+                $request->session()->regenerate();
 
-            return redirect('/')->with('message', 'Login Successful!');
+                return redirect('/admin');
+            }else{
+                
+                $request->session()->regenerate();
+
+                return redirect('/home');
+                
+            }
         }
 
         return back()->withErrors(['username' => 'Invalid Credentials'])->onlyInput('username');
@@ -93,12 +112,12 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function postpage(){
+    public function postpage($username){
         if(auth()->check()){
-            return view('/postpage');
+            return view('/postpage')->with('username', $username);
         } else{
-            //Later add "Oops you're not logged in page"
-            return view('/login');
+            
+            return redirect('/login')->with('message', 'Log in before viewing the post page!');
         }
     }
 
@@ -108,5 +127,17 @@ class UserController extends Controller
     
     public function password(){
         return view('/password');
+    }
+
+    public function suspend($name){
+        User::where('username', $name)->delete();
+        Comment::where('userUsername', $name)->delete();
+        Post::where('username', $name)->delete();
+    }
+
+    public function unsuspend($name){
+        User::onlyTrashed()->where('username', $name)->restore();
+        Comment::onlyTrashed()->where('userUsername', $name)->restore();
+        Post::onlyTrashed()->where('username', $name)->restore();
     }
 }

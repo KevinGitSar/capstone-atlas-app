@@ -1,8 +1,10 @@
 <template>
     <nav class="navbar navbar-expand-sm mt-4 mb-5 p-0 topnav">
         <div class="ml-4">
-            <input class="mr-1" type="text" placeholder="Search..." />
-            <button type="submit">Search</button>
+            <form action="/profile/search" method="GET">
+                <input class="mr-1" name="profile" type="text" placeholder="Search a profile..." />
+                <button type="submit">Search</button>
+            </form>
         </div>
         <div class="login">
             <a href="/login" class="navbar-brand m-0">Login</a>

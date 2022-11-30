@@ -16,46 +16,72 @@
         <div id="app">
             <Appheader></Appheader>
             @auth
-            <Usernavbar1 :user="{{ Auth::user() }}"></Usernavbar1>
-            <div class="atlas-content-container">
-                <div class="atlas-button-group">
-                    <div class="dropdown">
-                        <button class="atlas-btn ml-2 mt-2" role="button" data-toggle="dropdown" aria-expanded="false">View</button>
-                        <ul class="dropdown-menu atlas-menu-container">
-                            <li>
-                                <a href="#" class="dropdown-item atlas-menu-item m-0">All</a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-item atlas-menu-item m-0">Posts</a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-item atlas-menu-item m-0">Albums</a>
-                            </li>
-                        </ul>
-                    </div>    
-                    <div class="dropdown">
-                        <button class="atlas-btn ml-2 mt-2" role="button" data-toggle="dropdown" aria-expanded="false">Create</button>
-                        <ul class="dropdown-menu atlas-menu-container">
-                            <li>
-                                <a href="/postpage" class="dropdown-item atlas-menu-item m-0">Add a Post</a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-item atlas-menu-item m-0">Add an Album</a>
-                            </li>
-                        </ul>
+                @if(auth()->user()->username == $username)
+                <Usernavbar1 :user="{{ Auth::user() }}"></Usernavbar1>
+                <div class="atlas-content-container">
+                    <div class="atlas-button-group">
+                        <div class="dropdown">
+                            <button class="atlas-btn ml-2 mt-2" role="button" data-toggle="dropdown" aria-expanded="false">View</button>
+                            <ul class="dropdown-menu atlas-menu-container">
+                                <li>
+                                    <a href="#" class="dropdown-item atlas-menu-item m-0">All</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item atlas-menu-item m-0">Posts</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item atlas-menu-item m-0">Albums</a>
+                                </li>
+                            </ul>
+                        </div>    
+                        <div class="dropdown">
+                            <button class="atlas-btn ml-2 mt-2" role="button" data-toggle="dropdown" aria-expanded="false">Create</button>
+                            <ul class="dropdown-menu atlas-menu-container">
+                                <li>
+                                    <a href="/postpage/{{Auth::user()->username}}" class="dropdown-item atlas-menu-item m-0">Add a Post</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item atlas-menu-item m-0">Add an Album</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="gallery justify-content-center">
+                        @foreach($post as $item)
+                        <div class="gallery-item image-hover">
+                            <a href="/userpost/{{$item->username}}/post/{{$item->id}}"><img class="gallery-image" src="{{url('storage/'.$item->image)}}" alt="{{$item->image}}"></a>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
-                <div class="gallery">
-                    @foreach($post as $item)
-                    <div class="gallery-item">
-                        <img class="gallery-image" src="{{url('storage/'.$item->image)}}" alt="{{$item->image}}">
+                @else
+                <Usernavbar1 :user="{{ Auth::user() }}"></Usernavbar1>
+                <div class="atlas-content-container">
+                    <div class="gallery justify-content-center">
+                        @foreach($post as $item)
+                        <div class="gallery-item">
+                            <div>
+                                <a href="/userpost/{{$item->username}}/post/{{$item->id}}"><img class="gallery-image" src="{{url('storage/'.$item->image)}}" alt="{{$item->image}}"></a>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
-            </div>
+                @endif
+            
             @else
             <Mainnavbar></Mainnavbar>
-            <!-- oops you're not logged in please login here! -->
+                <div class="atlas-content-container">
+                    <div class="gallery justify-content-center">
+                        @foreach($post as $item)
+                        <div class="gallery-item">
+                            <div>
+                                <a href="/userpost/{{$item->username}}/post/{{$item->id}}"><img class="gallery-image" src="{{url('storage/'.$item->image)}}" alt="{{$item->image}}"></a>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
             @endauth
         </div>
         @vite('resources/js/app.js')

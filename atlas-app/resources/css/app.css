@@ -13,6 +13,18 @@
     right: 0;
 }
 
+.admin-view{
+    color: white;
+}
+
+.report-btn{
+    background-color: #292929;
+    color: whitesmoke;
+    border: none;
+    float:left;
+    padding: 0;
+}
+
 .atlas-btn{
     border: none;
     border-radius: 5px;
@@ -48,20 +60,127 @@
     margin-right: 5%;
     background-color: #DDE1DA;
     min-height: 500px;
+    padding:2.5%;
 }
 
 .gallery{
     background-color: #DDE1DA;
     display: flex;
     flex-wrap: wrap;
-    margin: 5%;
+    margin: 0 5% 5% 5%;
+}
+
+.tag-search{
+    background-color: #DDE1DA;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 1% 0 0 1%;
 }
 
 .gallery-item{
-    margin: 2%;
+    padding: 2%;
+}
+
+.image-hover:hover{
+    background-color: white;
 }
 
 .gallery-image{
     width: 200px;
     height: 275px;
+}
+
+.center-btn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+}
+
+.main-box{
+    background-color: #292929;
+    min-height: 600px;
+}
+
+.single-post{
+    width: 80%;
+}
+
+.single-post-image{
+    max-width: 400px;
+    padding-bottom: 10px;
+}
+
+.post-section{
+    background-color: #DDE1DA;
+    padding: 2%;
+}
+
+.comment-section{
+    margin-top: 15%;
+    background-color: #DDE1DA;
+    padding: 2%;
+}
+
+.left-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+}
+
+.right-box{
+    background-color: #52796F;
+    padding: 2.5%;
+    width: 45%;
+    border: 1px solid black;
+    float: right;
+}
+
+.report-list{
+    width: 90%;
+    margin: 0 auto;
+}
+
+#show-comments{
+    max-height: 300px;
+    margin-bottom: 5%;
+}
+
+.card {
+    margin-bottom: 5%;
+}
+
+.card-body{
+    padding: 2px !important;
+}
+
+.card-body p {
+    margin: 0;
+}
+
+.card-list{
+    margin: auto;
+    width: 80%;
+    background-color:#DDE1DA;
+    padding: 5%;
+}
+
+.outer-list{
+    padding: 1%;
+    background-color: #52796F;
+}
+
+.a-list, .a-list:hover{
+    color: #292929;
+}
+
+.report-list-container{
+    width: 30%;
+    background-color: #52796F;
+}
+
+.show-reported-container{
+    background-color: #DDE1DA;
 }

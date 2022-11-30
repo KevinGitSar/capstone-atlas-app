@@ -63,6 +63,8 @@
                         @error('password')
                             <p class="text-danger fs-6 mt-1">{{$message}}</p>
                         @enderror
+                        
+                        <input type="hidden" class="form-control" name="role" value="user" />
                     </div>
                 </div>
                 <div class="form-row form-center">

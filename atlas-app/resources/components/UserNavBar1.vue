@@ -1,14 +1,16 @@
 <template>
     <nav class="navbar navbar-expand-sm mt-4 mb-5 p-0 topnav">
         <div class="ml-4">
-            <input class="mr-1" type="text" placeholder="Search..." />
-            <button type="submit">Search</button>
+            <form action="/profile/search" method="GET">
+                <input class="mr-1" name="profile" type="text" placeholder="Search a profile..." />
+                <button type="submit">Search</button>
+            </form>
         </div>
         <div class="dropdown login">
             <a href="#" class="navbar-brand m-0" role="button" data-toggle="dropdown" aria-expanded="false">Welcome {{user.username}}</a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="/userpage" class="dropdown-item navbar-brand m-0">Posts</a>
+                    <a :href="'/profile/'+user.username" class="dropdown-item navbar-brand m-0">Posts</a>
                 </li>
                 <li>
                     <a href="#" class="dropdown-item navbar-brand m-0">Inbox</a>

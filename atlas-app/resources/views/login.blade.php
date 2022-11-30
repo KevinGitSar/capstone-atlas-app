@@ -12,8 +12,16 @@
         @vite(['resources/css/app.css'])
     </head>
     <body>
-    <div id="header"></div>
+    <div id="app">
+        <Appheader></Appheader>
+        <Mainnavbar></Mainnavbar>
+    </div>
     <div class="container">
+            @if(session()->has('message'))
+                <div class="w-50 ml-auto mr-auto text-center alert alert-danger alert-dismissible fade show" role="alert">
+                    <p class="m-0 p-0"><strong>{{session('message')}}<button type="button" class="float-left close m-0 p-0" data-dismiss="alert" aria-label="Close">&times;</button></strong></p>
+                </div>
+            @endif
             <h2 class="text-center display-4 m-2">Log in</h2>
             <form method="POST" action="/users/authenticate">
                 {{ csrf_field() }}

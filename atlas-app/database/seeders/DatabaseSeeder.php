@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +16,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::create([
+            'first_name' => 'Admin',
+            'last_name' => 'One',
+            'email' => 'AdminOne@administrator.com',
+            'birthdate' => Carbon::parse(Carbon::now())->format('Y-m-d'),
+            'username' => 'AdminOne',
+            'password' => bcrypt('adminone'),
+            'role' => 'admin'
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::create([
+            'first_name' => 'Kevin',
+            'last_name' => 'Sar',
+            'email' => 'Kev1@email.com',
+            'birthdate' => Carbon::parse(Carbon::now())->format('Y-m-d'),
+            'username' => 'Kev1',
+            'password' => bcrypt('password'),
+            'role' => 'user'
+        ]);
+
+        User::create([
+            'first_name' => 'Kevin',
+            'last_name' => 'Sar',
+            'email' => 'Kev2@email.com',
+            'birthdate' => Carbon::parse(Carbon::now())->format('Y-m-d'),
+            'username' => 'Kev2',
+            'password' => bcrypt('password'),
+            'role' => 'user'
+        ]);
     }
 }
