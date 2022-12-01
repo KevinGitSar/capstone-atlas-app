@@ -49,7 +49,7 @@
                     <div class="gallery justify-content-center">
                         @foreach($post as $item)
                         <div class="gallery-item image-hover">
-                            <a href="/userpost/{{$item->username}}/post/{{$item->id}}"><img class="gallery-image" src="{{url('storage/'.$item->image)}}" alt="{{$item->image}}"></a>
+                            <a href="/userpost/{{$item->username}}/post/{{$item->id}}"><img class="gallery-image" src="{{asset('storage/'.$item->image)}}" alt="{{$item->image}}"></a>
                         </div>
                         @endforeach
                     </div>
@@ -61,7 +61,7 @@
                         @foreach($post as $item)
                         <div class="gallery-item">
                             <div>
-                                <a href="/userpost/{{$item->username}}/post/{{$item->id}}"><img class="gallery-image" src="{{url('storage/'.$item->image)}}" alt="{{$item->image}}"></a>
+                                <a href="/userpost/{{$item->username}}/post/{{$item->id}}"><img class="gallery-image" src="{{asset('storage/'.$item->image)}}" alt="{{$item->image}}"></a>
                             </div>
                         </div>
                         @endforeach

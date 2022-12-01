@@ -84,7 +84,7 @@ class PostController extends Controller
         $path = str_replace("/", "\\", $post->image);
         if(File::exists(public_path('storage\\'.$path))){    //Delete might not work on server
             @unlink(public_path('storage\\'.$path));
-            $post->delete();
+            $post->forceDelete();
         }
 
         return redirect('/profile/' . auth()->user()->username);
@@ -99,20 +99,27 @@ class PostController extends Controller
     public function show($username, $postid)
     {
 
-        $post = Post::where('username', $username)->where('id', $postid)->first();
+        $post = Post::find($postid);
         
+
         $data = Comment::where('post', $post->image)->get();
         
-
-        $previousPost = Post::where('username', $username)->where('id', '<', $post->max('id'))->first();
-        if($previousPost === null){
+        $previousPost = null;
+        $previousPostId = Post::where('username', $username)->where('id', '<', $post->id)->max('id');
+        if($previousPostId === null){
             $previousPost = $post;
+        } else{
+            $previousPost = Post::find($previousPostId);
+        }
+        
+        $nextPost = null;
+        $nextPostId = Post::where('username', $username)->where('id', '>', $post->id)->min('id');
+        if($nextPostId === null){
+            $nextPost = $post;
+        }else{
+            $nextPost = Post::find($nextPostId);
         }
 
-        $nextPost = Post::where('username', $username)->where('id', '>', $post->min('id'))->first();
-        if($nextPost === null){
-            $nextPost = $post;
-        }
         if($post){
             return view('/userpost', compact('post'))->with('previousPost', $previousPost)->with('nextPost', $nextPost)->with('username', $username)->with('comments', $data);
         }

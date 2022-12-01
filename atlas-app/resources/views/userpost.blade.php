@@ -22,7 +22,7 @@
                     <div class="atlas-content-container">
                         <div class="d-flex justify-content-between">
                             <div class="center-btn">
-                                <button onclick="location.href='/userpost/{{$previousPost->username}}/post/{{$previousPost->id}}'">Previous</button>
+                                <button class="btn btn-secondary" onclick="location.href='/userpost/{{$previousPost->username}}/post/{{$previousPost->id}}'">Previous</button>
                             </div>
                             <div class="single-post">
                                 <div class="text-center">
@@ -58,7 +58,7 @@
                                                         @if($comment->userUsername == auth()->user()->username)
                                                         <div class="card">
                                                             <div class="dropdown">
-                                                                <button class="report-btn" role="button" data-toggle="dropdown" aria-expanded="false">...</button>
+                                                                <button class="comment-btn" role="button" data-toggle="dropdown" aria-expanded="false">...</button>
                                                                 <ul class="dropdown-menu atlas-menu-container">
                                                                     <li>
                                                                         <form action="/comment/delete/{{$comment->id}}" method="POST">
@@ -76,7 +76,7 @@
                                                         @else
                                                         <div class="card">
                                                             <div class="dropdown">
-                                                                <button class="report-btn" role="button" data-toggle="dropdown" aria-expanded="false">...</button>
+                                                                <button class="comment-btn" role="button" data-toggle="dropdown" aria-expanded="false">...</button>
                                                                 <ul class="dropdown-menu atlas-menu-container">
                                                                     <li>
                                                                         <a href="/report/{{$comment->userUsername}}" class="dropdown-item atlas-menu-item m-0">Report</a>
@@ -97,7 +97,7 @@
                                                     <input type="hidden" name="userUsername" value="{{$username}}"/>
                                                     <input type="hidden" name="post" value="{{$post->image}}"/>
                                                     <input type="text" id="comment-input" name="comment" minlength="1" maxlength="50"/>
-                                                    <button id="comment-btn" type="submit">Add Comment</button>
+                                                    <button id="comment-btn" class="btn btn-dark" type="submit">Add Comment</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -105,7 +105,7 @@
                                 </div>
                             </div>
                             <div class="center-btn">
-                                <button onclick="location.href='/userpost/{{$nextPost->username}}/post/{{$nextPost->id}}'">Next</button>
+                                <button class="btn btn-secondary" onclick="location.href='/userpost/{{$nextPost->username}}/post/{{$nextPost->id}}'">Next</button>
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                     <div class="atlas-content-container">
                         <div class="d-flex justify-content-between">
                             <div class="center-btn">
-                                <button onclick="location.href='/userpost/{{$previousPost->username}}/post/{{$previousPost->id}}'">Previous</button>
+                                <button class="btn btn-secondary" onclick="location.href='/userpost/{{$previousPost->username}}/post/{{$previousPost->id}}'">Previous</button>
                             </div>
                             <div class="single-post">
                                 <div class="text-center">
@@ -147,7 +147,7 @@
                                                     @if($comment->userUsername == auth()->user()->username)
                                                         <div class="card">
                                                             <div class="dropdown">
-                                                                <button class="report-btn" role="button" data-toggle="dropdown" aria-expanded="false">...</button>
+                                                                <button class="comment-btn" role="button" data-toggle="dropdown" aria-expanded="false">...</button>
                                                                 <ul class="dropdown-menu atlas-menu-container">
                                                                     <li>
                                                                         <form action="/comment/delete/{{$comment->id}}" method="POST">
@@ -165,7 +165,7 @@
                                                         @else
                                                         <div class="card">
                                                             <div class="dropdown">
-                                                                <button class="report-btn" role="button" data-toggle="dropdown" aria-expanded="false">...</button>
+                                                                <button class="comment-btn" role="button" data-toggle="dropdown" aria-expanded="false">...</button>
                                                                 <ul class="dropdown-menu atlas-menu-container">
                                                                     <li>
                                                                         <a href="/report/{{$comment->userUsername}}" class="dropdown-item atlas-menu-item m-0">Report</a>
@@ -186,7 +186,7 @@
                                                     <input type="hidden" name="userUsername" value="{{auth()->user()->username}}"/>
                                                     <input type="hidden" name="post" value="{{$post->image}}"/>
                                                     <input type="text" id="comment-input" name="comment" minlength="1" maxlength="50"/>
-                                                    <button id="comment-btn" type="submit">Add Comment</button>
+                                                    <button id="comment-btn" class="btn btn-dark" type="submit">Add Comment</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -194,7 +194,7 @@
                                 </div>
                             </div>
                             <div class="center-btn">
-                                <button onclick="location.href='/userpost/{{$nextPost->username}}/post/{{$nextPost->id}}'">Next</button>
+                                <button class="btn btn-secondary" onclick="location.href='/userpost/{{$nextPost->username}}/post/{{$nextPost->id}}'">Next</button>
                             </div>
                         </div>
                     </div>
@@ -204,7 +204,7 @@
                 <div class="atlas-content-container">
                     <div class="d-flex justify-content-between">
                         <div class="center-btn">
-                            <button onclick="location.href='/userpost/{{$previousPost->username}}/post/{{$previousPost->id}}'">Previous</button>
+                            <button class="btn btn-secondary" onclick="location.href='/userpost/{{$previousPost->username}}/post/{{$previousPost->id}}'">Previous</button>
                         </div>
                         <div class="single-post">
                             <div class="text-center">
@@ -240,7 +240,7 @@
                             </div>
                         </div>
                         <div class="center-btn">
-                            <button onclick="location.href='/userpost/{{$nextPost->username}}/post/{{$nextPost->id}}'">Next</button>
+                            <button class="btn btn-secondary" onclick="location.href='/userpost/{{$nextPost->username}}/post/{{$nextPost->id}}'">Next</button>
                         </div>
                     </div>
                 </div>

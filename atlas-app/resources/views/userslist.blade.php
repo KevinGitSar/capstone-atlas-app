@@ -46,12 +46,23 @@
                 @endif
             @else
             <Mainnavbar></Mainnavbar>
-            <div class="">
+            <div class="outer-list">
                 @if($users->isEmpty())    
                     <p>No users found</p>
                 @else
                     @foreach($users as $user)
-                        <a href='/profile/{{$user->username}}'>{{$user->username}}</a>
+                        <div class="m-2">
+                            <a href='/profile/{{$user->username}}' class="a-list">
+                                <div class="card-body card-list">
+                                    <h5 class="card-title">{{$user->username}}</h5>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="card-text"><strong>Name: </strong>{{$user->first_name}} {{$user->last_name}}</p>
+                                        <p class="card-text"><strong>Birthdate: </strong>{{$user->birthdate}}</p>
+                                        <p class="card-text"><strong>E-mail: </strong>{{$user->email}}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>    
                     @endforeach
                 @endif
             </div>

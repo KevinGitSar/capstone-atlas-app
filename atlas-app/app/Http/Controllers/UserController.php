@@ -36,6 +36,7 @@ class UserController extends Controller
      */
     public function userSearch(){
         $users = User::latest()->filter(request(['profile']))->get();
+        //dd($users);
         return view('userslist', compact('users'));
     }
 

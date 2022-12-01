@@ -18,7 +18,7 @@ class User extends Authenticatable
     public function scopeFilter($query, array $filters)
     {
         if($filters['profile'] ?? false){
-            $query->where('username', 'like', '%' . request('profile') . '%')->where('role', 'user')->where('suspended', false);
+            $query->where('username', 'like', '%' . request('profile') . '%')->where('role', 'user');
         }   
     }
     

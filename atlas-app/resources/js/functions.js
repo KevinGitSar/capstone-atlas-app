@@ -144,6 +144,8 @@ $(document).ready(function() {
     function dismissUser(name){
         $("#put-header2").empty();
         $("#show-reported").empty();
+        $("#put-header").empty();
+        $("#add-buttons").empty();
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -25,6 +25,24 @@
     padding: 0;
 }
 
+.comment-btn{
+    background-color: white;
+    color: #292929;
+    border: none;
+    float:right;
+    padding: 0 10px 0 0;
+}
+
+#comment-input{
+    overflow: hidden;
+    width: 80%;
+    padding: 6px 12px
+}
+
+#comment-btn{
+    float: right;
+}
+
 .atlas-btn{
     border: none;
     border-radius: 5px;
@@ -86,8 +104,9 @@
 }
 
 .gallery-image{
-    width: 200px;
-    height: 275px;
+    object-fit: cover;
+    width: 250px;
+    height: 300px;
 }
 
 .center-btn{
@@ -107,7 +126,8 @@
 }
 
 .single-post-image{
-    max-width: 400px;
+    object-fit: cover;
+    max-width: 1000px;
     padding-bottom: 10px;
 }
 
