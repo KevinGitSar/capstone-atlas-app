@@ -11,8 +11,8 @@ npm install
 touch database/database.sqlite
 ```
 # Frameworks
-![Vue Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/800px-Vue.js_Logo_2.svg.png)
+![Vue Logo](https://e7.pngegg.com/pngimages/789/586/png-clipart-gray-and-green-v-vue-js-logo-icons-logos-emojis-tech-companies-thumbnail.png)
 [Vue](https://vuejs.org/) was used for the front-end.
 
-![Laravel Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/800px-Laravel.svg.png)
+![Laravel Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/400px-Laravel.svg.png)
 [Laravel](https://laravel.com/) was used for developing the web application.
