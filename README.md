@@ -1,5 +1,5 @@
 # Atlas
-Atlas is a capstone project for educational purposes.
+Atlas is a content sharing web application as a capstone project for education purposes.
     
 # Install
 ### npm install packages
